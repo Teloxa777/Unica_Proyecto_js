@@ -1,58 +1,59 @@
-class Objeto{
-    constructor(nombre, material){
+let herramientaActiva = null; // Variable global para guardar la herramienta activa
+
+class Objeto {
+    constructor(nombre, material) {
         this.nombre = nombre;
         this.material = material;
     }
 
-    mostrarEstadisticas(){
-        document.getElementById("estadisticas__container").style.display = 'inline'
-        document.getElementById("herramienta__datos").style.display = 'inline'
-
-        document.getElementById('nombre').innerText = this.nombre
-        document.getElementById('Material').innerText = this.material
-        document.getElementById('daño').innerText = this.daño
-        document.getElementById('Durabilidad').innerText = this.duracion
-        document.getElementById('Encantamientos').innerText = this.encantamiento
+    mostrarEstadisticas() {
+        herramientaActiva = this; // Guardar la herramienta activa
+        document.getElementById("estadisticas__container").style.display = 'inline';
+        document.getElementById("herramienta__datos").style.display = 'inline';
+        document.getElementById('nombre').innerText = this.nombre;
+        document.getElementById('Material').innerText = this.material;
+        document.getElementById('daño').innerText = this.daño;
+        document.getElementById('Durabilidad').innerText = this.duracion;
+        document.getElementById('Encantamientos').innerText = this.encantamiento;
     }
 }
 
-class Herramienta extends Objeto{
-    constructor(nombre, material, vidaUtil,daño,encantamiento){
+class Herramienta extends Objeto {
+    constructor(nombre, material, vidaUtil, daño, encantamiento, id) {
         super(nombre, material);
         this.duracion = vidaUtil;
-        this.daño = daño
-        this.encantamiento = encantamiento
+        this.daño = daño;
+        this.encantamiento = encantamiento;
+        this.id = id; // Agregar id a la herramienta
     }
 
-    soltar(){
-        alert(this.nombre+" Se ha soltado ")
-        document.getElementById("hacha").style.display="none";
-        document.getElementById("estadisticas__container").style.display = 'none'
-        document.getElementById("herramienta__datos").style.display = 'none'
+    soltar() {
+        alert(this.nombre + " Se ha soltado ");
+        document.getElementById(this.id).style.display = "none"; // Ocultar la herramienta correcta
+        document.getElementById("estadisticas__container").style.display = 'none';
+        document.getElementById("herramienta__datos").style.display = 'none';
     }
-    atacar(enemigo){
-        alert(`Atacando ${enemigo}`)
-        //alert("Atacando " + enemigo)
+
+    atacar(enemigo) {
+        alert(`Atacando ${enemigo}`);
     }
 }
 
-class Espada extends Herramienta{
-    constructor(nombre, material, vidaUtil, afilado){
-        super(nombre, material, vidaUtil);
+class Espada extends Herramienta {
+    constructor(nombre, material, vidaUtil, afilado, id) {
+        super(nombre, material, vidaUtil, afilado, null, id);
         this.afilado = afilado;
     }
 
-    cortarTelaraña(){
-        alert("Cortando telaraña sin parametros...")
+    cortarTelaraña() {
+        alert("Cortando telaraña sin parametros...");
     }
 
-    // metodo sobrecargado
-    cortarTelaraña(objeto){
-        alert(typeof objeto)
-        if(objeto == "telaraña"){
-            alert("Cortando telaraña con parametros...")
+    cortarTelaraña(objeto) {
+        if (objeto === "telaraña") {
+            alert("Cortando telaraña con parametros...");
         } else {
-            alert("Esto no es una telaraña")
+            alert("Esto no es una telaraña");
         }
     }
 }
@@ -103,41 +104,46 @@ var espadaDiamante = new Espada(
     'Espada de Diamante',
     'Diamante',
     80,
-    30
-    )
+    30,
+    'espada'
+);
 
 var hachaHierro = new Herramienta(
     'Hacha de Hierro',
     'Hierro',
     100,
     69,
-    "Ninguno"
+    "Ninguno",
+    'hacha'
+);
 
-)
-
-var picoHierro = new Pico(
-    'Pico de Hierro',
+var picoHierro = new Herramienta(
+    'Pico de Oro',
     'Hierro',
     150,
     5,
-    "Eficiencia I"
+    "Eficiencia I",
+    'pico'
 );
 
-var palaDiamante = new Pala(
-    'Pala de Diamante',
+var palaDiamante = new Herramienta(
+    'Pala de Hierro',
     'Diamante',
     100,
     4,
-    "Ninguno"
+    "Ninguno",
+    'pala'
 );
 
-var azadaMadera = new Azada(
-    'Azada de Madera',
+var azadaMadera = new Herramienta(
+    'Azada de Piedra',
     'Madera',
     50,
     1,
-    "Ninguno"
+    "Ninguno",
+    'azada'
 );
+
 document.getElementById('pico').addEventListener('click', () => {
     picoHierro.mostrarEstadisticas();
 });
@@ -151,21 +157,22 @@ document.getElementById('azada').addEventListener('click', () => {
 });
 
 document.getElementById('espada').addEventListener('click', () => {
-    espadaDiamante.mostrarEstadisticas()
-})
+    espadaDiamante.mostrarEstadisticas();
+});
 
 document.getElementById('hacha').addEventListener('click', () => {
-    hachaHierro.mostrarEstadisticas()
-})
+    hachaHierro.mostrarEstadisticas();
+});
+
 document.getElementById('soltar').addEventListener('click', () => {
-    hachaHierro.soltar()
-})
-
-document.addEventListener("keyup",(evento)=>{
-    if (evento.keyCode === 27){
-        document.getElementById("estadisticas__container").style.display = 'none'
-        document.getElementById("herramienta__datos").style.display = 'none'
-
-        
+    if (herramientaActiva) {
+        herramientaActiva.soltar();
     }
-})
+});
+
+document.addEventListener("keyup", (evento) => {
+    if (evento.keyCode === 27) {
+        document.getElementById("estadisticas__container").style.display = 'none';
+        document.getElementById("herramienta__datos").style.display = 'none';
+    }
+});

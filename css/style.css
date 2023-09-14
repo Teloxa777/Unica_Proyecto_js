@@ -119,3 +119,35 @@ main, footer{
 {
     display: none;
 }
+
+button {
+    background-color: #4CAF50; /* Color de fondo */
+    border: none; /* Sin bordes */
+    color: white; /* Color del texto */
+    padding: 12px 24px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Display inline-block */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin: 4px 2px; /* Margen */
+    cursor: pointer; /* Cursor de mano al pasar por encima */
+    border-radius: 12px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+}
+
+button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el cursor por encima */
+}
+
+/* Estilos para posicionar el botón en la parte superior derecha */
+button {
+    position: absolute; /* Posición absoluta */
+    top: 10px; /* 10px desde la parte superior */
+    right: 10px; /* 10px desde la parte derecha */
+}
+
+/* Estilos para el enlace dentro del botón */
+button a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+}
