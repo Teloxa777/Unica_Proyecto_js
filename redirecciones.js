@@ -1,3 +1,11 @@
+function redirigir17() {
+    window.location.href = "verificasionCre.html";
+}
+
+function redirigir16() {
+    window.location.href = "compraProuc.html";
+}
+
 function redirigir18() {
     window.location.href = "minecraf.html";
 }
@@ -271,10 +279,10 @@ function selectProgram(number) {
             redirigir15()
             break;
         case 16:
-            inicioSecion()
+            redirigir16()
             break;
         case 17:
-            PPT()
+            redirigir17()
             break;
         case 18:
             redirigir18()

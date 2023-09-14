@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Compra de Productos</h1>
+        <button onclick="realizarCompra()">Realizar Compra</button>
+        <p id="resultado"></p>
+        <button><a href="index.html">Click para regresar</a></button>
+    </div>
+
+    <script>
+        const productos = [
+            { id: 1, nombre: 'Producto 1', precio: 10, stock: 5 },
+            { id: 2, nombre: 'Producto 2', precio: 20, stock: 3 },
+            { id: 3, nombre: 'Producto 3', precio: 30, stock: 0 },
+        ];
+
+        function consultarDisponibilidad(id) {
+            return new Promise((resolve, reject) => {
+                const producto = productos.find((p) => p.id === id);
+                if (producto && producto.stock > 0) {
+                    resolve(producto);
+                } else {
+                    reject(`El producto con ID ${id} no está disponible.`);
+                }
+            });
+        }
+
+        async function calcularPrecioTotal(ids) {
+            let total = 0;
+            for (const id of ids) {
+                try {
+                    const producto = await consultarDisponibilidad(id);
+                    total += producto.precio;
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            return total;
+        }
+
+        function realizarCompra() {
+            const productosAComprar = [1, 2, 3];
+            calcularPrecioTotal(productosAComprar)
+                .then((total) => {
+                    document.getElementById('resultado').innerText = `El precio total de la compra es: $${total}`;
+                })
+                .catch((error) => {
+                    document.getElementById('resultado').innerText = error;
+                });
+        }
+    </script>
+</body>
+</html>
