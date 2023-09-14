@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/js.js"></script>
+
+    <title>Índice de Programas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #78c9ea;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #c3c9f5;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        #menu li {
+            margin: 15px 0;
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #menu li:hover {
+            color: #0056b3;
+            background-color: #e1f0ff;
+            border: 1px solid #007BFF;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #botonesContainer {
+            display: none; /* Oculta inicialmente el contenedor de botones */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            background-color: #c3c9f5; /* Color de fondo del contenedor */
+            padding: 10px; /* Espaciado interno del contenedor */
+            border-radius: 8px; /* Bordes redondeados */
+        }
+
+
+    </style>
+</head>
+<body>
+    <h2>Proyecto Fundamentos de programacion</h2>
+    <ul id="menu">
+        <div id="botonesContainer">
+            <button id="azul">Azul</button>
+            <button id="rojo">Rojo</button>
+            <button id="verde">Verde</button>
+        </div>
+        
+        <li onclick="selectProgram(1)">1. Juego de Piedra, Papel o Tijera</li>
+        <li onclick="selectProgram(2)">2. Simulación de Inicio de Sesión</li>
+        <li onclick="selectProgram(3)">3. Calculadora Básica</li>
+        <li onclick="selectProgram(4)">4. Validación de Contraseña</li>
+        <li onclick="selectProgram(5)">5. Número Aleatorio Par o Impar</li>
+        <li onclick="selectProgram(6)">6. Tabla de Multiplicar</li>
+        <li onclick="selectProgram(7)">7. Saludo a Amigos</li>
+        <li onclick="selectProgram(8)">8. Número Mayor y Menor en Arreglo</li>
+        <li onclick="selectProgram(9)">9. Palabras con la letra "a"</li>
+        <li onclick="selectProgram(10)">10. Cambio de Color de Fondo</li>
+        <li onclick="selectProgram(11)">11. Caja Sorpresa</li>
+        <li onclick="selectProgram(12)">12. Compra de Bits de Twitch</li>
+        <li onclick="selectProgram(13)">13. Validación de Formulario</li>
+        <li onclick="selectProgram(14)">14. Galería de Imágenes</li>
+        <li onclick="selectProgram(15)">15. Encriptador y Desencriptador</li>
+        <li onclick="selectProgram(16)">16. Compra Asíncrona de Productos</li>
+        <li onclick="selectProgram(17)">17. Verificación Asíncrona de Credenciales</li>
+        <li onclick="selectProgram(18)">18. Herramienta de Minecraft</li>
+    </ul>
+
+<footer>
+    <h2>
+        Hecho por Ortega Teloxa Miguel Alfredo
+    </h2>
+</footer>
+</body>
+</html>

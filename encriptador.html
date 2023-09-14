@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de texto</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        main {
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        p {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <p>Encriptador de texto</p>
+    </header>
+    <main>
+        <section>
+            <textarea id="texto" cols="40" rows="12" placeholder="Ingrese el texto aquí"></textarea>
+            <p>&#9432; Sólo letras minúsculas y sin acentos</p>
+            <div>
+                <button id="en">Encriptar</button>
+                <button id="des">Desencriptar</button>
+            </div>
+        </section>
+
+        <section>
+            <span id="resultado">Resultado?</span>
+            <div>
+                <img alt="Imagen buscando texto">
+            </div>
+            <div>
+                <button>Copiar</button>
+            </div>
+        </section>
+        <section>
+            <h2><a href="/index.html">Click para regresar</a></h2>
+        </section>
+    </main>
+
+    <script>
+        var res = document.getElementById("resultado");
+        let texto = document.querySelector("textarea");
+            
+        function encriptar(valor) {
+            let encriptado = [];
+            for (let index = 0; index < valor.length; index++) {
+                switch (valor[index]) {
+                    case 'e':
+                        encriptado.push('enter');
+                        break;
+                    case 'i':
+                        encriptado.push('imes');
+                        break;
+                    case 'a':
+                        encriptado.push('ai');
+                        break;
+                    case 'o':
+                        encriptado.push('ober');
+                        break;
+                    case 'u':
+                        encriptado.push('ufat');
+                        break;
+                    default:
+                        encriptado.push(valor[index]);
+                        break;
+                }
+            }
+            res.textContent = encriptado.join('');
+        }
+        function desencriptar(valor) {
+            let desencriptado = valor;
+            desencriptado = desencriptado.replace(/enter/g, 'e');
+            desencriptado = desencriptado.replace(/imes/g, 'i');
+            desencriptado = desencriptado.replace(/ai/g, 'a');
+            desencriptado = desencriptado.replace(/ober/g, 'o');
+            desencriptado = desencriptado.replace(/ufat/g, 'u');
+             res.textContent = desencriptado;
+        }
+
+        function verificarTexto() {
+    
+            if (texto.value.match("[A-Z]") != null || texto.value.match("[áéíóú]")) {
+                alert("Solo aceptan letras minusculas y sin acentos");
+                window.location.reload();
+                
+            }
+            if (texto.value== null || texto.value == " " || texto.value == "") {
+                alert("Ingrese texto");
+                window.location.reload();
+            }
+          
+        }
+        document.getElementById("en").addEventListener("click", () => {
+           
+            var valor = document.getElementById("texto").value;
+            verificarTexto();
+            encriptar(valor);
+        });
+
+        document.getElementById("des").addEventListener("click", () => {
+            var valor = document.getElementById("texto").value;
+            verificarTexto()
+            desencriptar(valor);
+        });
+
+        
+    </script>
+</body>
+</html>

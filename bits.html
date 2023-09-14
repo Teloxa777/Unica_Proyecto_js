@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .cheeremote{
+            width: 25%;
+            height: auto;
+        }
+        .bits-info,.buy-bits,.chat{
+            border: 1pt solid black;
+            width: 50vw;
+        }
+        .chat-identity{
+            width: 25px;
+            height: auto;
+        }
+        .chat-message{
+            width: 90%;
+        }
+        .chat-bits{
+            width: 20px;
+            cursor: pointer;
+        }
+        .close-bits{
+            cursor: pointer;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .bits-info, .buy-bits, .chat {
+            border: 1px solid #ccc;
+            width: 50vw;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cheeremote {
+            width: 25%;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .cheeremote:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-identity {
+            width: 25px;
+            margin-right: 10px;
+        }
+
+        .chat-message {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-bits {
+            width: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-bits:hover {
+            transform: scale(1.1);
+        }
+
+        .close-bits, .close {
+            cursor: pointer;
+            float: right;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .bits-prices {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bits-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    </style>
+</head>
+<body>
+    <section class="bits-info bits-hidden" id="bits-info">
+        <div class="close-bits">
+            <span class="close" id="close-01">&#x292B;</span>
+        </div>
+        <section class="bits-header"> 
+            <h2>Apoya a tu pana favorito</h2>
+            <p>Selecciona un Cheeremote para tu Cheer</p>
+            <a href="#">Como enviar un Cheer</a>
+        </section>
+        <section class="bits-cheeremotes">
+            <img src="img/cheer1.png" alt="" class="cheeremote">
+            <img src="img/cheer2.png" alt="" class="cheeremote">
+            <img src="img/cheer3.png" alt="" class="cheeremote">
+        </section>
+        <section class="bets-footer">
+            <div class="bets">Tienes <b><span id="bits">0</span></b> Bits</div>
+            <button class="get-bits" id="buy">Conseguir Bits</button>
+        </section>
+    </section>
+    <section class="buy-bits bits-hidden" id="buy-bits">
+        <span class="close" id="close-02">&#x292B;</span>
+        <section class="buy-header">
+            <h1>CUMprar Bits</h1>
+            <p>Los preios se muestran en MXN</p>
+
+            <section class="bits-prices">
+                <div class="bits-price">
+                    <div class="bits">100 bits</div>
+                    <button data-bits="100" data-cost="32.71" class="buy-button">$32.71</button>
+
+                    <div class="bits">1000 bits</div>
+                    <button data-bits="1000" data-cost="" class="buy-button">$163.57</button>
+
+                    <div class="bits">10000 bits</div>
+                    <button data-bits="10000" data-cost="" class="buy-button">$466.16</button>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <section class="chat">
+        <img src="img/perritu.png" alt="" class="chat-identity">
+        <input type="text" class="chat-message" placeholder="Enviar un mensaje">
+        <img src="img/bits.png" alt="" class="chat-bits" id="chat-bists">
+    </section>
+
+    <h2><a href="/index.html">Click para regresar</a></h2>
+    <script>
+        const buyButtons = document.querySelectorAll(".buy-button");
+        const totalBitsSpan = document.getElementById("bits");
+
+        let totalBits = 0;
+
+        buyButtons.forEach(button =>{
+            const bits = parseInt(button.getAttribute("data-bits"));
+            button.addEventListener("click",()=>{
+                totalBits +=bits;
+
+                totalBitsSpan.textContent = totalBits;
+            })
+        })
+
+        
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Referencia al botón "Conseguir Bits"
+            const getBitsButton = document.getElementById("buy");
+
+            // Referencia a la sección "buy-bits"
+            const buyBitsSection = document.getElementById("buy-bits");
+
+            // Referencia al botón de cierre en la sección "buy-bits"
+            const closeButton = document.getElementById("close-02");
+
+            // Función para mostrar la sección "buy-bits"
+            getBitsButton.addEventListener("click", function() {
+            buyBitsSection.style.display = "block";
+        });
+
+        // Función para ocultar la sección "buy-bits"
+        closeButton.addEventListener("click", function() {
+        buyBitsSection.style.display = "none";
+        });
+    });
+
+    </script>
+</body>
+</html>

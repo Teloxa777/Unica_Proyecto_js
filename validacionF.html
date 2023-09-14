@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .inputs-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <h1>Inicio de Sesión</h1>
+        <div class="inputs-container">
+            <label for="email-input">Correo</label>
+            <input type="email" id="email-input">
+        </div>
+
+        <div class="inputs-container">
+            <label for="password-input">Contraseña</label>
+            <input type="password" id="password-input">
+        </div>
+        <button type="button" id="btn-ingresar">Ingresar</button>
+    </form>
+
+    <h2><a href="/index.html">Click para regresar</a></h2>
+    <script>
+        function ingresar() {
+            const emailInput = document.getElementById("email-input");
+            const passwordInput = document.getElementById("password-input");
+
+            const passwordCorrecta = "123456";
+            const emailCorrecta = "theChad@gmail.com";
+
+            if (emailInput.value == "") {
+                alert("No has ingresado tu correo");
+                return;
+            }
+            if (passwordInput.value == "") {
+                alert("No has ingresado tu contraseña");
+                return;
+            }
+            if (passwordInput.value !== passwordCorrecta) {
+                alert("La contraseña no es correcta");
+                return;
+            }
+            if (emailInput.value !== emailCorrecta) {
+                alert("El correo no es correcto");
+                return;
+            } else {
+                alert("Tus datos no son correctos");
+            }
+        }
+        document.getElementById("btn-ingresar").addEventListener("click", ingresar);
+    </script>
+</body>
+
+</html>
